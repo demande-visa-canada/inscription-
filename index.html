@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demande de Visa — Canada</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--red:#c8102e;--navy:#1a2744;--cream:#faf8f4;--border:#d6d0c4;--white:#fff;--muted:#6b6560;--text:#1e1e1e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);font-size:14px}
+.header{background:var(--navy);padding:20px 24px;display:flex;align-items:center;gap:16px}
+.header img{height:60px;width:auto}
+.header-text h1{font-size:20px;font-weight:600;color:#fff}
+.header-text p{font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:1px;text-transform:uppercase;margin-top:3px}
+.wrap{max-width:780px;margin:0 auto;padding:24px 16px 60px}
+.section{background:var(--white);border:1px solid var(--border);border-radius:4px;margin-bottom:16px;overflow:hidden}
+.sec-title{background:var(--navy);color:#fff;padding:10px 16px;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase}
+.sec-body{padding:16px}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:1fr 1fr 1fr}
+@media(max-width:600px){.g2,.g3{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:4px}
+label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.7px}
+label .n{color:var(--red);margin-right:2px}
+input,select,textarea{border:1px solid var(--border);border-radius:3px;padding:8px 10px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--cream);width:100%;outline:none;transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--navy);background:#fff}
+textarea{min-height:60px;resize:vertical}
+.rg{display:flex;gap:16px;flex-wrap:wrap;padding-top:6px}
+.rl{display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer;color:var(--text)}
+.rl input{width:14px;height:14px;accent-color:var(--red);padding:0;background:none;border:none}
+.med-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);border-radius:3px;overflow:hidden}
+@media(max-width:500px){.med-grid{grid-template-columns:1fr}}
+.med-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-bottom:1px solid #eee;border-right:1px solid #eee;font-size:12px}
+.med-item:nth-child(2n){border-right:none}
+.med-yn{display:flex;gap:4px;flex-shrink:0}
+.med-yn label{display:flex;align-items:center;gap:3px;font-size:11px;font-weight:600;color:var(--muted);text-transform:none;letter-spacing:0;cursor:pointer}
+.pp-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:4px}
+.pp-table th{background:#f0ede6;padding:7px 10px;text-align:left;font-size:10px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.7px;border:1px solid var(--border)}
+.pp-table td{border:1px solid var(--border);padding:0}
+.pp-table td input{border:none;background:transparent;padding:7px 10px;font-size:12px}
+.pp-table td:first-child{padding:7px 10px;font-size:11px;color:var(--muted)}
+.sig-box{border:1.5px dashed var(--border);border-radius:3px;background:var(--cream);overflow:hidden}
+#sigCanvas{display:block;width:100%;cursor:crosshair;touch-action:none}
+.sig-btns{display:flex;gap:8px;margin-top:8px}
+.btn-clear{background:none;border:1px solid var(--border);border-radius:3px;padding:6px 12px;font-size:12px;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif}
+.consent{font-size:11px;color:var(--muted);line-height:1.6;padding:12px 14px;background:#f8f5ef;border-left:3px solid var(--red);margin-bottom:16px}
+.btn-submit{background:var(--red);color:#fff;border:none;border-radius:3px;padding:14px 36px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:background .2s}
+.btn-submit:hover{background:#a50d24}
+.btn-submit:disabled{background:#ccc;cursor:not-allowed}
+.success{display:none;text-align:center;padding:60px 24px}
+.success h2{font-size:28px;color:var(--navy);margin:16px 0 10px}
+.success p{color:var(--muted);line-height:1.7}
+hr{border:none;border-top:1px solid var(--border);margin:14px 0}
+</style>
+</head>
+<body>
+<div class="header">
+  <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QF8RXhpZgAATU0AKgAAAAgABgESAAMAAAABAAEAAAEaAAUAAAABAAAAVgEbAAUAAAABAAAAXgEoAAMAAAABAAIAAAEyAAIAAAAUAAAAZodpAAQAAAABAAAAegAAAAAAAABIAAAAAQAAAEgAAAABMjAyNjowMzoyMSAxMjoyNTowOQAAD5AAAAcAAAAEMDIyMZADAAIAAAAUAAABNJAEAAIAAAAUAAABSJAQAAIAAAAHAAABXJARAAIAAAAHAAABZJASAAIAAAAHAAABbJEBAAcAAAAEAQIDAJKQAAIAAAAEMDAwAJKRAAIAAAAEMDAwAJKSAAIAAAAEMDAwAKAAAAcAAAAEMDEwMKABAAMAAAABAAEAAKACAAQAAAABAAABLKADAAQAAAABAAABLKQGAAMAAAABAAAAAAAAAAAyMDI2OjAzOjIxIDEyOjI1OjA5ADIwMjY6MDM6MjEgMTI6MjU6MDkAKzAxOjAwAAArMDE6MDAAACswMTowMAAA/+0AfFBob3Rvc2hvcCAzLjAAOEJJTQQEAAAAAABEHAFaAAMbJUccAgAAAgACHAI/AAYxMjI1MDkcAj4ACDIwMjYwMzIxHAI3AAgyMDI2MDMyMRwCPAALMTIyNTA5KzAxMDA4QklNBCUAAAAAABBY6vAxI0lTe2ZPPVgXDzGC/8IAEQgBLAEsAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAMCBAEFAAYHCAkKC//EAMMQAAEDAwIEAwQGBAcGBAgGcwECAAMRBBIhBTETIhAGQVEyFGFxIweBIJFCFaFSM7EkYjAWwXLRQ5I0ggjhU0AlYxc18JNzolBEsoPxJlQ2ZJR0wmDShKMYcOInRTdls1V1pJXDhfLTRnaA40dWZrQJChkaKCkqODk6SElKV1hZWmdoaWp3eHl6hoeIiYqQlpeYmZqgpaanqKmqsLW2t7i5usDExcbHyMnK0NTV1tfY2drg5OXm5+jp6vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAQIAAwQFBgcICQoL/8QAwxEAAgIBAwMDAgMFAgUCBASHAQACEQMQEiEEIDFBEwUwIjJRFEAGMyNhQhVxUjSBUCSRoUOxFgdiNVPw0SVgwUThcvEXgmM2cCZFVJInotIICQoYGRooKSo3ODk6RkdISUpVVldYWVpkZWZnaGlqc3R1dnd4eXqAg4SFhoeIiYqQk5SVlpeYmZqgo6SlpqeoqaqwsrO0tba3uLm6wMLDxMXGx8jJytDT1NXW19jZ2uDi4+Tl5ufo6ery8/T19vf4+fr/2wBDAAICAgICAgMCAgMFAwMDBQYFBQUFBggGBgYGBggKCAgICAgICgoKCgoKCgoMDAwMDAwODg4ODg8PDw8PDw8PDw//2wBDAQIDAwQEBAcEBAcQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/2gAMAwEAAhEDEQAAAfv7bVttW21bbVttW21bbVttW21bbVttW21bbVttW21bbVttW21bbVttW21bbVttW21bbVttW21bbVttW21bbVttW21bbVttW21bbVttW21bbVttW21bbVttW21bbVttW21bbVttW21bbVttW21bbVttW21bbVttW0fnJwfW/o5vzb3B9j+km/NvV+km/Nt+2f6K7b3PyXbattq22rbattq23lWfb6rvzb3i/qP6Sb829X6Sb829X6Sb5I+t/U/Ptturwttq22rbao/Mr9NfzK8D9ib7b579o22rWFfYNl+l22++/jrbatuXuk6fJfV/z7958T9Q+nNyHV+3+XE2z8+8i9d8i5fe+Htt8T/Vm21bbV7v9j/HH2P9X/Om23q/AbbVttW21R+ZX6a/mV4H7E323z37RttWsK+wbL9Lto++/jqdvIMe958Sfo5+avgfsaXTXeN+r9l+hnxl9Q/R/hPWbi+y9j81V5F675Fh6vw9tvif6s22rbavd/sf44+x/q/50229X4Dbattq22qPzK/TX8yvA/Ym+2+e/aNtq1hX2DZfpd5d6ix+4/kn4F5MQvh/6w+h/Gee2vn7bYe37/5Xym38Xp+o8w94fk+xvIvXfIvrP54+Htt8T/Vm21bbV7v9j/HH2P8AV/zptt6vwG21bbVttUfmV+mv5leB+xN9t89+0bbVrCvsGy/S7jey33f8hfnNzX6QfD3yv9C8BtvM+922rbTUe69X9Oe5+Qp8m9d8i9r8x+Htt8T/AFZttW21e7/Y/wAcfY/1f86bber8BttW21bbVH5lfpr+ZXgfsTfbfPftG21awr7Bsv0u23338davsKhNvzfB9k+hfMfvX56R9Ze51+bfu/vNRr53su2+l/EN5F675Fy+98Pbb4n+rNtq22r3f7H+OPsf6v8AnTbb1fgNtq22rbao/Mr9NfzK8D9ib7b579o22rWFfYNl+l22++/jrbattq+bvoDwv27zfs7fbel8ZttW8i9d8i5fe+Htt8T/AFZttW21e7/Y/wAcfY/1f86bber8BttW21bbVH52/onuD6z85N+je4frvzk36N6vzkffobpNtvd/KNtq22rbattq22reW+pbPu/OTfo3vG/TPzk36N6vzk36N6vk76x29T4Hbbp8Pbattq22rbattq22rbattq22rbattq22rbattq22rbattq22rbattq22rbatt8810/jfxn+wVeD+Z/aPmNcr7x8SfbdbbVttW21bbVttW21bbV8seQ/ZH5i19ne2fJfoXzf7R7f4txtQN/rfu/KfVvc/J9tunyNtq22rbat+OH7H/gzX6E/bvzF9O1ttXl3I+5/ntX0P6f13411+x/zt9P8A5L1+iHmtL9WV5t6z+JH7L14wHw37aqv7X8b/ANbKJ418C/rRXjPwL9pfFtfo/wCU+k+UY+j0vXVXyIyfo9d7PzbbHLbattq22rfi1+0vyZTX69/JH9a6Xs3qh88+b/nevvL8yP3B/Eav2+/K/wDVD8rq+4vb/Cfdq/EX9uvw8/UCn/OfGP6s1+MP6C/nx+plfEP6ffj5+wdcD+Y36QfmrX69fO/m3GV3nzp96/BNfq3tq22rbattq22rbavmDyb741fLb36X1c58Hfopq+cflD9PdXz381/oxq+Xvc+u1flj9re8avzx99+kdX5gfbHs+r45t/q/V8hfKP616vAfBfvjV8vfNn6aavNvSdq22rbattq22rbattq22rbattq22rbattq22rbattq22rbattq22rbattq22rbattq22rbattq22rbattq22rbattq22rbattq22rbattq22rbattq22rbattq22rbattq22rbattq22rbattq22rbattq22rbav//aAAgBAQABBQL/AKcPl3Lceb+kdyf6R3J/pHcn+kdyf6R3J2u47h73/O+M5JIti/SO5P8ASO5P9I7k/wBI7k/0juT/AEjuT8BXV1cbr/NTfvvu2n+N/e8XeIZNnTaXMV5bfd8b/wDGP/e+r3/av/NTfvvu2n+N/c3LdrXaWLm3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" alt="Logo Canada">
+  <div class="header-text">
+    <h1>Formulaire de Demande de Visa</h1>
+    <p>Immigration, Réfugiés et Citoyenneté Canada · Réf V0.9</p>
+  </div>
+</div>
+
+<div class="wrap">
+<div id="formSection">
+<form id="visaForm" novalidate>
+
+<!-- SECTION 1 -->
+<div class="section">
+  <div class="sec-title">01 — Type de Visa</div>
+  <div class="sec-body">
+    <div class="grid g2">
+      <div class="field">
+        <label><span class="n">(1)</span>Pays de délivrance</label>
+        <input type="text" name="pays_delivrance" placeholder="Ex: Canada" value="Canada">
+      </div>
+      <div class="field">
+        <label><span class="n">(2)</span>Type de visa</label>
+        <div class="rg">
+          <label class="rl"><input type="radio" name="type_visa" value="Visa Touriste"> Touriste</label>
+          <label class="rl"><input type="radio" name="type_visa" value="Visa Travail"> Travail</label>
+          <label class="rl"><input type="radio" name="type_visa" value="Visa Étude"> Étude</label>
+          <label class="rl"><input type="radio" name="type_visa" value="Résidence Permanente"> Résidence permanente</label>
+          <label class="rl"><input type="radio" name="type_visa" value="Regroupement Familial"> Regroupement familial</label>
+          <label class="rl"><input type="radio" name="type_visa" value="Transit"> Transit</label>
+          <label class="rl"><input type="radio" name="type_visa" value="Réfugié"> Réfugié</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2 -->
+<div class="section">
+  <div class="sec-title">02 — Identité</div>
+  <div class="sec-body">
+    <div class="grid g3">
+      <div class="field"><label><span class="n">(3)</span>Nom</label><input type="text" name="nom" placeholder="NOM"></div>
+      <div class="field"><label><span class="n">(4)</span>Nom de naissance</label><input type="text" name="nom_naissance" placeholder="Si différent"></div>
+      <div class="field"><label><span class="n">(12)</span>Nationalité actuelle</label><input type="text" name="nationalite_actuelle"></div>
+      <div class="field"><label><span class="n">(5)</span>Prénom(s)</label><input type="text" name="prenom"></div>
+      <div class="field"><label><span class="n">(6)</span>Date de naissance</label><input type="date" name="date_naissance"></div>
+      <div class="field"><label><span class="n">(7)</span>Sexe</label>
+        <div class="rg"><label class="rl"><input type="radio" name="sexe" value="Masculin"> Masculin</label><label class="rl"><input type="radio" name="sexe" value="Féminin"> Féminin</label></div>
+      </div>
+      <div class="field"><label><span class="n">(8)</span>Lieu et pays de naissance</label><input type="text" name="lieu_naissance" placeholder="Ville, Pays"></div>
+      <div class="field"><label><span class="n">(9)</span>Nationalité</label><input type="text" name="nationalite"></div>
+      <div class="field"><label><span class="n">(14)</span>État civil</label>
+        <select name="etat_civil"><option value="">— Sélectionner —</option><option>Célibataire</option><option>Marié(e)</option><option>Divorcé(e)</option><option>Veuf/Veuve</option></select>
+      </div>
+      <div class="field"><label><span class="n">(15)</span>Profession principale</label><input type="text" name="profession"></div>
+      <div class="field"><label><span class="n">(16)</span>Employeur</label><input type="text" name="employeur"></div>
+      <div class="field"><label><span class="n">(17)</span>Pays de naissance</label><input type="text" name="pays_naissance"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3 -->
+<div class="section">
+  <div class="sec-title">03 — Coordonnées</div>
+  <div class="sec-body">
+    <div class="grid g2">
+      <div>
+        <p style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:8px">(10) Adresse permanente</p>
+        <div class="field" style="margin-bottom:10px"><label>Adresse</label><textarea name="adresse_permanente" rows="2"></textarea></div>
+        <div class="grid g2">
+          <div class="field"><label>Pays</label><input type="text" name="pays_perm"></div>
+          <div class="field"><label>Téléphone</label><input type="tel" name="tel_perm"></div>
+        </div>
+        <div class="field" style="margin-top:10px"><label>Courriel</label><input type="email" name="email_perm"></div>
+      </div>
+      <div>
+        <p style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:8px">(11) Adresse postale</p>
+        <div class="field" style="margin-bottom:10px"><label>Adresse</label><textarea name="adresse_postale" rows="2"></textarea></div>
+        <div class="grid g2">
+          <div class="field"><label>Pays</label><input type="text" name="pays_postal"></div>
+          <div class="field"><label>Téléphone</label><input type="tel" name="tel_postal"></div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="field">
+      <label><span class="n">(19)</span>Vertiges lors des voyages ?</label>
+      <div class="rg">
+        <label class="rl"><input type="radio" name="vertiges" value="Non" onchange="toggle('vertiges_det',false)"> Non</label>
+        <label class="rl"><input type="radio" name="vertiges" value="Oui" onchange="toggle('vertiges_det',true)"> Oui</label>
+      </div>
+    </div>
+    <div class="field" id="vertiges_det" style="display:none;margin-top:8px"><label>Détails</label><input type="text" name="vertiges_detail"></div>
+  </div>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section">
+  <div class="sec-title">04 — Documents d'Identité</div>
+  <div class="sec-body">
+    <table class="pp-table">
+      <thead><tr><th>Type</th><th>Numéro</th><th>Pays de délivrance</th></tr></thead>
+      <tbody>
+        <tr><td>Passeport diplomatique</td><td><input type="text" name="pp_dip_num"></td><td><input type="text" name="pp_dip_pays"></td></tr>
+        <tr><td>Passeport ordinaire</td><td><input type="text" name="pp_ord_num"></td><td><input type="text" name="pp_ord_pays"></td></tr>
+        <tr><td>Passeport officiel</td><td><input type="text" name="pp_off_num"></td><td><input type="text" name="pp_off_pays"></td></tr>
+      </tbody>
+    </table>
+    <div class="grid g3" style="margin-top:12px">
+      <div class="field"><label><span class="n">(21)</span>Nationalité naissance (si différente)</label><input type="text" name="nat_naissance"></div>
+      <div class="field"><label><span class="n">(22)</span>Déjà résidé au Canada ?</label>
+        <div class="rg"><label class="rl"><input type="radio" name="reside_canada" value="Non"> Non</label><label class="rl"><input type="radio" name="reside_canada" value="Oui"> Oui</label></div>
+      </div>
+      <div class="field"><label><span class="n">(23)</span>Adresse électronique</label><input type="email" name="email_demandeur"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5 -->
+<div class="section">
+  <div class="sec-title">05 — Voyage & Famille</div>
+  <div class="sec-body">
+    <div class="grid g2">
+      <div class="field"><label><span class="n">(20)</span>Séjour avec membres de la famille ?</label>
+        <div class="rg"><label class="rl"><input type="radio" name="fam_sejour" value="Non"> Non</label><label class="rl"><input type="radio" name="fam_sejour" value="Oui"> Oui</label></div>
+      </div>
+      <div class="field"><label><span class="n">(24)</span>Famille résidant au Canada ?</label>
+        <div class="rg"><label class="rl"><input type="radio" name="fam_canada" value="Non"> Non</label><label class="rl"><input type="radio" name="fam_canada" value="Oui"> Oui</label></div>
+      </div>
+      <div class="field"><label><span class="n">(25)</span>Type de vol envisagé</label><input type="text" name="type_vol"></div>
+      <div class="field"><label><span class="n">(26)</span>Activité actuelle</label><input type="text" name="activite"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6 -->
+<div class="section">
+  <div class="sec-title">06 — Santé & Habitudes</div>
+  <div class="sec-body">
+    <div class="grid g2">
+      <div>
+        <div class="field"><label><span class="n">(27)</span>Consommez-vous de l'alcool ?</label>
+          <div class="rg"><label class="rl"><input type="radio" name="alcool" value="Non" onchange="toggle('alcool_det',false)"> Non</label><label class="rl"><input type="radio" name="alcool" value="Oui" onchange="toggle('alcool_det',true)"> Oui</label></div>
+        </div>
+        <div id="alcool_det" style="display:none;margin-top:8px" class="field"><label>Quantité/jour</label><input type="text" name="alcool_qte"></div>
+      </div>
+      <div>
+        <div class="field"><label><span class="n">(29)</span>Consommez-vous du tabac ?</label>
+          <div class="rg">
+            <label class="rl"><input type="radio" name="tabac" value="Non jamais" onchange="toggle('tabac_det',false);toggle('tabac_arret',false)"> Non jamais</label>
+            <label class="rl"><input type="radio" name="tabac" value="Non actuellement" onchange="toggle('tabac_det',false);toggle('tabac_arret',true)"> Non actuellement</label>
+            <label class="rl"><input type="radio" name="tabac" value="Oui" onchange="toggle('tabac_det',true);toggle('tabac_arret',false)"> Oui</label>
+          </div>
+        </div>
+        <div id="tabac_det" style="display:none;margin-top:8px" class="field"><label>Type et quantité</label><input type="text" name="tabac_detail"></div>
+        <div id="tabac_arret" style="display:none;margin-top:8px" class="field"><label>Date d'arrêt</label><input type="date" name="tabac_arret_date"></div>
+      </div>
+    </div>
+    <hr>
+    <div class="field"><label><span class="n">(28)</span>Prenez-vous des médicaments ?</label>
+      <div class="rg"><label class="rl"><input type="radio" name="medic" value="Non" onchange="toggle('medic_det',false)"> Non</label><label class="rl"><input type="radio" name="medic" value="Oui" onchange="toggle('medic_det',true)"> Oui</label></div>
+    </div>
+    <div id="medic_det" style="display:none;margin-top:8px" class="field"><label>Nature, dose, durée et raison</label><textarea name="medic_detail"></textarea></div>
+  </div>
+</div>
+
+<!-- SECTION 7 -->
+<div class="section">
+  <div class="sec-title">07 — Antécédents Médicaux Personnels</div>
+  <div class="sec-body">
+    <div class="med-grid">
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m101" value="Oui">O</label><label><input type="radio" name="m101" value="Non">N</label></div><span>(101) Maladie ou opération oculaire</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m102" value="Oui">O</label><label><input type="radio" name="m102" value="Non">N</label></div><span>(102) Lunettes/lentilles de contact</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m103" value="Oui">O</label><label><input type="radio" name="m103" value="Non">N</label></div><span>(103) Modifications prescription lunettes</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m104" value="Oui">O</label><label><input type="radio" name="m104" value="Non">N</label></div><span>(104) Allergie ou rhume des foins</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m105" value="Oui">O</label><label><input type="radio" name="m105" value="Non">N</label></div><span>(105) Asthme ou maladie pulmonaire</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m106" value="Oui">O</label><label><input type="radio" name="m106" value="Non">N</label></div><span>(106) Maladie du cœur ou des vaisseaux</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m107" value="Oui">O</label><label><input type="radio" name="m107" value="Non">N</label></div><span>(107) Tension artérielle élevée ou basse</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m108" value="Oui">O</label><label><input type="radio" name="m108" value="Non">N</label></div><span>(108) Calcul rénal ou sang dans les urines</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m109" value="Oui">O</label><label><input type="radio" name="m109" value="Non">N</label></div><span>(109) Diabète ou désordre hormonal</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m110" value="Oui">O</label><label><input type="radio" name="m110" value="Non">N</label></div><span>(110) Affection estomac, foie ou intestins</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m111" value="Oui">O</label><label><input type="radio" name="m111" value="Non">N</label></div><span>(111) Surdité ou maladie des oreilles</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m112" value="Oui">O</label><label><input type="radio" name="m112" value="Non">N</label></div><span>(112) Affection gorge, nez, trouble du langage</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m113" value="Oui">O</label><label><input type="radio" name="m113" value="Non">N</label></div><span>(113) Traumatismes crânien ou commotion</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m114" value="Oui">O</label><label><input type="radio" name="m114" value="Non">N</label></div><span>(114) Maux de tête fréquents ou graves</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m115" value="Oui">O</label><label><input type="radio" name="m115" value="Non">N</label></div><span>(115) Accès de vertige/évanouissement</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m116" value="Oui">O</label><label><input type="radio" name="m116" value="Non">N</label></div><span>(116) Perte de conscience</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m117" value="Oui">O</label><label><input type="radio" name="m117" value="Non">N</label></div><span>(117) Affection neurologique</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m118" value="Oui">O</label><label><input type="radio" name="m118" value="Non">N</label></div><span>(118) Troubles psychiques</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m119" value="Oui">O</label><label><input type="radio" name="m119" value="Non">N</label></div><span>(119) Traitement abus alcool/drogue</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m120" value="Oui">O</label><label><input type="radio" name="m120" value="Non">N</label></div><span>(120) Tentative de suicide</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m121" value="Oui">O</label><label><input type="radio" name="m121" value="Non">N</label></div><span>(121) Mal des transports</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m122" value="Oui">O</label><label><input type="radio" name="m122" value="Non">N</label></div><span>(122) Anémie/Drépanocytose</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m123" value="Oui">O</label><label><input type="radio" name="m123" value="Non">N</label></div><span>(123) Paludisme, maladie tropicale</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m124" value="Oui">O</label><label><input type="radio" name="m124" value="Non">N</label></div><span>(124) Test VIH positif</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m125" value="Oui">O</label><label><input type="radio" name="m125" value="Non">N</label></div><span>(125) Maladie sexuellement transmissible</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m126" value="Oui">O</label><label><input type="radio" name="m126" value="Non">N</label></div><span>(126) Trouble du sommeil, apnée</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m127" value="Oui">O</label><label><input type="radio" name="m127" value="Non">N</label></div><span>(127) Maladie musculaire ou squelettique</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m128" value="Oui">O</label><label><input type="radio" name="m128" value="Non">N</label></div><span>(128) Toute autre maladie ou blessure</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m129" value="Oui">O</label><label><input type="radio" name="m129" value="Non">N</label></div><span>(129) Hospitalisation</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m130" value="Oui">O</label><label><input type="radio" name="m130" value="Non">N</label></div><span>(130) Recours à un médecin</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m131" value="Oui">O</label><label><input type="radio" name="m131" value="Non">N</label></div><span>(131) Assurance vie refusée</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m132" value="Oui">O</label><label><input type="radio" name="m132" value="Non">N</label></div><span>(132) Refus licence de vol</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m133" value="Oui">O</label><label><input type="radio" name="m133" value="Non">N</label></div><span>(133) Exempté service national</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m134" value="Oui">O</label><label><input type="radio" name="m134" value="Non">N</label></div><span>(134) Pension pour blessure/maladie</span></div>
+    </div>
+    <hr>
+    <p style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:10px">Antécédents familiaux</p>
+    <div class="med-grid">
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m170" value="Oui">O</label><label><input type="radio" name="m170" value="Non">N</label></div><span>(170) Affection cardiaque</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m171" value="Oui">O</label><label><input type="radio" name="m171" value="Non">N</label></div><span>(171) Hypertension artérielle</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m172" value="Oui">O</label><label><input type="radio" name="m172" value="Non">N</label></div><span>(172) Taux élevé de cholestérol</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m173" value="Oui">O</label><label><input type="radio" name="m173" value="Non">N</label></div><span>(173) Épilepsie</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m174" value="Oui">O</label><label><input type="radio" name="m174" value="Non">N</label></div><span>(174) Maladie mentale</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m175" value="Oui">O</label><label><input type="radio" name="m175" value="Non">N</label></div><span>(175) Diabète</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m176" value="Oui">O</label><label><input type="radio" name="m176" value="Non">N</label></div><span>(176) Tuberculose</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m177" value="Oui">O</label><label><input type="radio" name="m177" value="Non">N</label></div><span>(177) Allergie/Asthme/Eczéma</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m178" value="Oui">O</label><label><input type="radio" name="m178" value="Non">N</label></div><span>(178) Maladie héréditaire</span></div>
+      <div class="med-item"><div class="med-yn"><label><input type="radio" name="m179" value="Oui">O</label><label><input type="radio" name="m179" value="Non">N</label></div><span>(179) Glaucome</span></div>
+    </div>
+    <hr>
+    <p style="font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:10px">Femmes uniquement</p>
+    <div class="grid g2">
+      <div class="field"><label><span class="n">(150)</span>Affection gynécologique / menstruation</label>
+        <div class="rg"><label class="rl"><input type="radio" name="m150" value="Oui">Oui</label><label class="rl"><input type="radio" name="m150" value="Non">Non</label></div>
+      </div>
+      <div class="field"><label><span class="n">(151)</span>Êtes-vous enceinte ?</label>
+        <div class="rg"><label class="rl"><input type="radio" name="m151" value="Oui">Oui</label><label class="rl"><input type="radio" name="m151" value="Non">Non</label></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 8 -->
+<div class="section">
+  <div class="sec-title">08 — Signature & Date</div>
+  <div class="sec-body">
+    <div class="grid g2" style="margin-bottom:14px">
+      <div class="field"><label>Date</label><input type="date" name="date_sig" id="dateSig"></div>
+    </div>
+    <label style="display:block;margin-bottom:8px">Signature du demandeur <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted)">(dessinez ci-dessous)</span></label>
+    <div class="sig-box">
+      <canvas id="sigCanvas" height="130"></canvas>
+    </div>
+    <div class="sig-btns">
+      <button type="button" class="btn-clear" onclick="clearSig()">✕ Effacer</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUBMIT -->
+<div class="section">
+  <div class="sec-body">
+    <div class="consent">
+      En connaissance de cause, j'accepte ce qui suit : aux fins de ma demande de visa, il y a lieu de recueillir les données requises dans ce formulaire, de me photographier et, le cas échéant, de prendre mes empreintes digitales. Les données me concernant seront communiquées aux autorités canadiennes compétentes.
+    </div>
+    <button type="button" class="btn-submit" id="submitBtn" onclick="submitForm()">
+      ✉ Envoyer la demande
+    </button>
+  </div>
+</div>
+
+</form>
+</div>
+
+<!-- SUCCESS -->
+<div class="success" id="successSection">
+  <div style="font-size:56px">✅</div>
+  <h2>Demande envoyée !</h2>
+  <p>Votre demande de visa a été transmise avec succès.<br>Vous recevrez une réponse à votre adresse électronique.</p>
+  <button class="btn-submit" style="margin-top:24px" onclick="resetForm()">Nouvelle demande</button>
+</div>
+</div>
+
+<script>
+// Toggle conditionnel
+function toggle(id, show){document.getElementById(id).style.display=show?'block':'none';}
+
+// Date par défaut
+document.getElementById('dateSig').valueAsDate=new Date();
+
+// Signature canvas
+const canvas=document.getElementById('sigCanvas');
+const ctx=canvas.getContext('2d');
+let drawing=false,lx=0,ly=0;
+function resize(){canvas.width=canvas.offsetWidth;ctx.strokeStyle='#1e1e1e';ctx.lineWidth=2;ctx.lineCap='round';}
+resize();window.addEventListener('resize',resize);
+function pos(e){const r=canvas.getBoundingClientRect();return e.touches?{x:e.touches[0].clientX-r.left,y:e.touches[0].clientY-r.top}:{x:e.clientX-r.left,y:e.clientY-r.top};}
+canvas.addEventListener('mousedown',e=>{drawing=true;const p=pos(e);lx=p.x;ly=p.y;});
+canvas.addEventListener('mousemove',e=>{if(!drawing)return;const p=pos(e);ctx.beginPath();ctx.moveTo(lx,ly);ctx.lineTo(p.x,p.y);ctx.stroke();lx=p.x;ly=p.y;});
+canvas.addEventListener('mouseup',()=>drawing=false);
+canvas.addEventListener('mouseleave',()=>drawing=false);
+canvas.addEventListener('touchstart',e=>{e.preventDefault();drawing=true;const p=pos(e);lx=p.x;ly=p.y;},{passive:false});
+canvas.addEventListener('touchmove',e=>{e.preventDefault();if(!drawing)return;const p=pos(e);ctx.beginPath();ctx.moveTo(lx,ly);ctx.lineTo(p.x,p.y);ctx.stroke();lx=p.x;ly=p.y;},{passive:false});
+canvas.addEventListener('touchend',()=>drawing=false);
+function clearSig(){ctx.clearRect(0,0,canvas.width,canvas.height);}
+function sigEmpty(){return!ctx.getImageData(0,0,canvas.width,canvas.height).data.some(v=>v!==0);}
+
+// Collecte données
+function collect(){
+  const f=document.getElementById('visaForm');
+  const fd=new FormData(f);
+  const d={};fd.forEach((v,k)=>d[k]=v);
+  return d;
+}
+
+// Corps email
+function buildMsg(d){
+  const r=(n)=>{const e=document.querySelector(`input[name="${n}"]:checked`);return e?e.value:'—';};
+  const v=(k)=>d[k]||'—';
+  const med=(n,l)=>`  (${n}) ${l}: ${r('m'+n)}`;
+  return `
+DEMANDE DE VISA CANADA — Réf V0.9
+===================================
+
+TYPE DE VISA
+  Pays de délivrance: ${v('pays_delivrance')}
+  Type de visa: ${r('type_visa')}
+
+IDENTITÉ
+  Nom: ${v('nom')}  |  Nom naissance: ${v('nom_naissance')}
+  Prénom(s): ${v('prenom')}
+  Date de naissance: ${v('date_naissance')}
+  Sexe: ${r('sexe')}  |  État civil: ${v('etat_civil')}
+  Lieu de naissance: ${v('lieu_naissance')}
+  Nationalité: ${v('nationalite')}  |  Nationalité actuelle: ${v('nationalite_actuelle')}
+  Profession: ${v('profession')}  |  Employeur: ${v('employeur')}
+  Pays de naissance: ${v('pays_naissance')}
+
+COORDONNÉES
+  Adresse permanente: ${v('adresse_permanente')}, ${v('pays_perm')}
+  Téléphone: ${v('tel_perm')}  |  Courriel: ${v('email_perm')}
+  Adresse postale: ${v('adresse_postale')}, ${v('pays_postal')}
+  Tél. postal: ${v('tel_postal')}
+  Vertiges: ${r('vertiges')} ${d.vertiges_detail?'— '+d.vertiges_detail:''}
+
+DOCUMENTS
+  Passeport diplomatique: ${v('pp_dip_num')} (${v('pp_dip_pays')})
+  Passeport ordinaire: ${v('pp_ord_num')} (${v('pp_ord_pays')})
+  Passeport officiel: ${v('pp_off_num')} (${v('pp_off_pays')})
+  Nationalité naissance: ${v('nat_naissance')}
+  Résidé au Canada: ${r('reside_canada')}
+  Email: ${v('email_demandeur')}
+
+VOYAGE & FAMILLE
+  Séjour en famille: ${r('fam_sejour')}  |  Famille au Canada: ${r('fam_canada')}
+  Type de vol: ${v('type_vol')}  |  Activité: ${v('activite')}
+
+SANTÉ
+  Alcool: ${r('alcool')} ${d.alcool_qte?'— '+d.alcool_qte:''}
+  Tabac: ${r('tabac')} ${d.tabac_detail?'— '+d.tabac_detail:''} ${d.tabac_arret_date?'(arrêt: '+d.tabac_arret_date+')':''}
+  Médicaments: ${r('medic')} ${d.medic_detail?'— '+d.medic_detail:''}
+
+ANTÉCÉDENTS MÉDICAUX PERSONNELS
+${med(101,'Maladie/opération oculaire')}
+${med(102,'Lunettes/lentilles')}
+${med(103,'Modification prescription')}
+${med(104,'Allergie/rhume des foins')}
+${med(105,'Asthme/maladie pulmonaire')}
+${med(106,'Cœur/vaisseaux')}
+${med(107,'Tension artérielle')}
+${med(108,'Calcul rénal/sang urines')}
+${med(109,'Diabète/désordre hormonal')}
+${med(110,'Estomac/foie/intestins')}
+${med(111,'Surdité/oreilles')}
+${med(112,'Gorge/nez/langage')}
+${med(113,'Traumatisme crânien')}
+${med(114,'Maux de tête')}
+${med(115,'Vertige/évanouissement')}
+${med(116,'Perte de conscience')}
+${med(117,'Affection neurologique')}
+${med(118,'Troubles psychiques')}
+${med(119,'Abus alcool/drogue')}
+${med(120,'Tentative de suicide')}
+${med(121,'Mal des transports')}
+${med(122,'Anémie/Drépanocytose')}
+${med(123,'Paludisme/maladie tropicale')}
+${med(124,'VIH positif')}
+${med(125,'MST')}
+${med(126,'Trouble du sommeil')}
+${med(127,'Maladie musculaire/squelettique')}
+${med(128,'Autre maladie/blessure')}
+${med(129,'Hospitalisation')}
+${med(130,'Recours médecin')}
+${med(131,'Assurance vie refusée')}
+${med(132,'Refus licence vol')}
+${med(133,'Exempté service national')}
+${med(134,'Pension blessure/maladie')}
+
+ANTÉCÉDENTS FAMILIAUX
+${med(170,'Affection cardiaque')}
+${med(171,'Hypertension')}
+${med(172,'Cholestérol élevé')}
+${med(173,'Épilepsie')}
+${med(174,'Maladie mentale')}
+${med(175,'Diabète')}
+${med(176,'Tuberculose')}
+${med(177,'Allergie/Asthme/Eczéma')}
+${med(178,'Maladie héréditaire')}
+${med(179,'Glaucome')}
+
+FEMMES
+${med(150,'Affection gynécologique')}
+${med(151,'Enceinte')}
+
+SIGNATURE
+  Date: ${v('date_sig')}
+  Signature (base64 PNG):
+${canvas.toDataURL('image/png')}
+
+===================================
+Soumis le ${new Date().toLocaleString('fr-FR')}
+`.trim();
+}
+
+// Envoi Web3Forms
+async function submitForm(){
+  if(sigEmpty()){alert('Veuillez signer le formulaire.');return;}
+  const d=collect();
+  const nom=((d.nom||'')+' '+(d.prenom||'')).trim();
+  const btn=document.getElementById('submitBtn');
+  btn.textContent='⏳ Envoi en cours...';
+  btn.disabled=true;
+  try{
+    const res=await fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        access_key:'5c71d244-db3f-447f-aae6-ed76939c3771',
+        subject:'Demande de Visa Canada — '+nom+' — '+(d.date_sig||''),
+        from_name:nom,
+        email:'citoyennete.immigraton.canada@gmail.com',
+        replyto:d.email_perm||d.email_demandeur||'',
+        message:buildMsg(d)
+      })
+    });
+    const result=await res.json();
+    if(result.success){
+      document.getElementById('formSection').style.display='none';
+      document.getElementById('successSection').style.display='block';
+      window.scrollTo({top:0,behavior:'smooth'});
+    }else{throw new Error(result.message||'Erreur');}
+  }catch(err){
+    btn.textContent='✉ Envoyer la demande';
+    btn.disabled=false;
+    alert('Erreur: '+err.message);
+  }
+}
+
+function resetForm(){
+  document.getElementById('visaForm').reset();
+  clearSig();
+  document.getElementById('formSection').style.display='block';
+  document.getElementById('successSection').style.display='none';
+  document.getElementById('dateSig').valueAsDate=new Date();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
